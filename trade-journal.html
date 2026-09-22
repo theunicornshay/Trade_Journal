@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trade Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6F8;
+    --card:#FFFFFF;
+    --ink:#241A26;
+    --ink-soft:#6B5D6E;
+    --hairline:#EADDE3;
+    --pink:#D4537E;
+    --pink-deep:#993556;
+    --blue:#3D7BFF;
+    --blue-deep:#1B4FCC;
+    --green:#1D9E75;
+    --green-deep:#0F6E56;
+    --red:#D85A30;
+    --red-deep:#993C1D;
+    --radius:16px;
+    --radius-sm:10px;
+    font-family:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
+  body{
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:calc(env(safe-area-inset-bottom,0px) + 32px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px;}
+
+  header.top{padding:28px 0 18px;}
+  header.top h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:32px;
+    line-height:1.05;
+    margin:0 0 4px;
+    letter-spacing:-0.01em;
+  }
+  header.top p{margin:0;color:var(--ink-soft);font-size:14px;}
+
+  .filebar{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:var(--radius);
+    padding:12px 14px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+  }
+  .filebar .status{flex:1 1 auto;font-size:13px;color:var(--ink-soft);min-width:120px;}
+  .filebar .status strong{color:var(--ink);font-weight:600;}
+  .btn{
+    appearance:none;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13px;
+    padding:9px 14px;border-radius:999px;
+    background:var(--ink);color:#fff;
+    transition:transform .08s ease;
+  }
+  .btn:active{transform:scale(0.96);}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--hairline);}
+  .btn.pink{background:var(--pink);}
+  .btn.blue{background:var(--blue);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+  .btn.small{padding:7px 12px;font-size:12px;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-radius:var(--radius);
+    padding:18px;
+    margin-bottom:16px;
+  }
+  .card h2{
+    font-family:'Fraunces',serif;
+    font-size:18px;
+    font-weight:600;
+    margin:0 0 14px;
+  }
+
+  .field{margin-bottom:12px;}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:5px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+
+  select, input[type=text], input[type=number], input[type=date], input[type=time], textarea{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:10px 11px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--hairline);
+    background:#fff;
+    color:var(--ink);
+  }
+  select:focus, input:focus, textarea:focus{outline:2px solid var(--blue);outline-offset:1px;}
+  textarea{resize:vertical;min-height:52px;font-size:14px;}
+
+  .toggle-group{display:flex;gap:8px;}
+  .toggle-group button{
+    flex:1;
+    padding:10px 8px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--hairline);
+    background:#fff;
+    font-weight:600;
+    font-size:13px;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .toggle-group button.active[data-v="long"]{background:var(--blue);border-color:var(--blue);color:#fff;}
+  .toggle-group button.active[data-v="short"]{background:var(--pink);border-color:var(--pink);color:#fff;}
+  .toggle-group button.active[data-v="win"]{background:var(--green);border-color:var(--green);color:#fff;}
+  .toggle-group button.active[data-v="loss"]{background:var(--red);border-color:var(--red);color:#fff;}
+  .toggle-group button.active[data-v="be"]{background:var(--ink-soft);border-color:var(--ink-soft);color:#fff;}
+
+  .chip-group{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{
+    padding:7px 12px;
+    border-radius:999px;
+    border:1px solid var(--hairline);
+    background:#fff;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    cursor:pointer;
+  }
+  .chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  .calc-out{
+    display:flex;justify-content:space-between;align-items:baseline;
+    background:#FAF3F6;border-radius:var(--radius-sm);padding:10px 12px;
+    margin-top:4px;font-size:13px;color:var(--ink-soft);
+  }
+  .calc-out strong{font-size:16px;color:var(--ink);font-weight:700;}
+
+  .save-row{display:flex;gap:10px;margin-top:4px;}
+  .save-row .btn{flex:1;}
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  .stat{background:#FAF3F6;border-radius:var(--radius-sm);padding:12px 10px;text-align:center;}
+  .stat .n{font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
+  .stat .l{font-size:11px;color:var(--ink-soft);margin-top:2px;}
+  .stat.pos .n{color:var(--green-deep);}
+  .stat.neg .n{color:var(--red-deep);}
+
+  /* Trade list */
+  .trade{
+    border:1px solid var(--hairline);
+    border-radius:var(--radius-sm);
+    padding:12px 13px;
+    margin-bottom:9px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .trade .side-mark{
+    width:6px;align-self:stretch;border-radius:4px;flex:none;
+  }
+  .trade .side-mark.win{background:var(--green);}
+  .trade .side-mark.loss{background:var(--red);}
+  .trade .side-mark.be{background:var(--ink-soft);}
+  .trade .main{flex:1;min-width:0;}
+  .trade .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .trade .instr{font-weight:700;font-size:15px;}
+  .trade .pl{font-weight:700;font-size:15px;}
+  .trade .pl.pos{color:var(--green-deep);}
+  .trade .pl.neg{color:var(--red-deep);}
+  .trade .r2{font-size:12px;color:var(--ink-soft);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;}
+  .trade .tag{background:var(--hairline);border-radius:999px;padding:1px 8px;font-weight:600;}
+  .trade .del{background:none;border:none;color:var(--ink-soft);font-size:18px;cursor:pointer;padding:2px 6px;flex:none;}
+
+  .empty{text-align:center;color:var(--ink-soft);font-size:14px;padding:28px 10px;}
+  .empty .glyph{font-size:26px;display:block;margin-bottom:8px;}
+
+  details.settings summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-soft);list-style:none;display:flex;align-items:center;gap:6px;}
+  details.settings summary::-webkit-details-marker{display:none;}
+  details.settings summary::after{content:'›';transform:rotate(90deg);transition:transform .15s;font-size:16px;}
+  details.settings[open] summary::after{transform:rotate(-90deg);}
+  details.settings .row2{margin-top:12px;}
+  .hint{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+
+  input[type=file]{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>Trade Journal</h1>
+    <p>Logged in seconds. Saved to a file only you hold.</p>
+  </header>
+
+  <div class="filebar">
+    <div class="status" id="fileStatus">No journal open yet</div>
+    <button class="btn ghost small" id="btnOpen">Open</button>
+    <button class="btn ghost small" id="btnNew">New</button>
+  </div>
+
+  <div class="card" id="statsCard" style="display:none;">
+    <h2>This journal</h2>
+    <div class="stats">
+      <div class="stat" id="statTrades"><div class="n">0</div><div class="l">Trades</div></div>
+      <div class="stat" id="statWinRate"><div class="n">–</div><div class="l">Win rate</div></div>
+      <div class="stat" id="statPL"><div class="n">$0</div><div class="l">Net P/L</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="formCard" style="display:none;">
+    <h2>Log a trade</h2>
+
+    <div class="row2 field">
+      <div>
+        <label>Date</label>
+        <input type="date" id="fDate">
+      </div>
+      <div>
+        <label>Time</label>
+        <input type="time" id="fTime">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Instrument</label>
+      <select id="fInstr">
+        <option value="MNQ">MNQ</option>
+        <option value="MES">MES</option>
+        <option value="MGC">MGC</option>
+        <option value="MYM">MYM</option>
+        <option value="OTHER">Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Direction</label>
+      <div class="toggle-group" id="fDirection">
+        <button type="button" data-v="long">Long</button>
+        <button type="button" data-v="short">Short</button>
+      </div>
+    </div>
+
+    <div class="row3 field">
+      <div>
+        <label>Entry</label>
+        <input type="number" step="any" id="fEntry" inputmode="decimal">
+      </div>
+      <div>
+        <label>Take profit</label>
+        <input type="number" step="any" id="fTP" inputmode="decimal">
+      </div>
+      <div>
+        <label>Stop loss</label>
+        <input type="number" step="any" id="fSL" inputmode="decimal">
+      </div>
+    </div>
+
+    <div class="calc-out">
+      <span>Risk:reward</span>
+      <strong id="calcRR">–</strong>
+    </div>
+
+    <div class="field" style="margin-top:12px;">
+      <label>Setup(s) used — tap all that apply</label>
+      <div class="chip-group" id="fSetups">
+        <button type="button" class="chip" data-v="CHoCH">CHoCH</button>
+        <button type="button" class="chip" data-v="BOS">BOS</button>
+        <button type="button" class="chip" data-v="MSS">MSS</button>
+        <button type="button" class="chip" data-v="FVG">FVG</button>
+        <button type="button" class="chip" data-v="CRT">CRT</button>
+        <button type="button" class="chip" data-v="ICC">ICC</button>
+        <button type="button" class="chip" data-v="Other">Other</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Result</label>
+      <div class="toggle-group" id="fResult">
+        <button type="button" data-v="win">Win</button>
+        <button type="button" data-v="loss">Loss</button>
+        <button type="button" data-v="be">Break even</button>
+      </div>
+    </div>
+
+    <div class="row2 field" id="plRow">
+      <div>
+        <label>P/L ($)</label>
+        <input type="number" step="any" id="fPL" inputmode="decimal" placeholder="auto-filled, editable">
+      </div>
+      <div>
+        <label>R multiple</label>
+        <input type="text" id="fRmult" disabled placeholder="auto">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Notes — optional</label>
+      <textarea id="fNotes" placeholder="Anything worth remembering. Leave blank if not."></textarea>
+    </div>
+
+    <details class="settings">
+      <summary>Dollar value per point (for auto P/L)</summary>
+      <div class="row2">
+        <div class="field"><label>MNQ</label><input type="number" step="any" id="vMNQ" value="2"></div>
+        <div class="field"><label>MES</label><input type="number" step="any" id="vMES" value="5"></div>
+        <div class="field"><label>MGC</label><input type="number" step="any" id="vMGC" value="10"></div>
+        <div class="field"><label>MYM</label><input type="number" step="any" id="vMYM" value="0.50"></div>
+      </div>
+      <p class="hint">These are typical values — double check against your broker/contract specs. Saved with your journal.</p>
+    </details>
+
+    <button class="btn pink" id="btnAdd" style="width:100%;margin-top:14px;">Save trade</button>
+  </div>
+
+  <div class="card" id="listCard" style="display:none;">
+    <h2>Trades</h2>
+    <div id="tradeList"></div>
+  </div>
+
+  <div class="card" id="startCard">
+    <div class="empty">
+      <span class="glyph">🦄</span>
+      Open an existing journal file, or start a new one.<br>Everything stays on your device.
+    </div>
+    <div class="save-row">
+      <button class="btn ghost" id="btnOpen2">Open journal</button>
+      <button class="btn pink" id="btnNew2">New journal</button>
+    </div>
+  </div>
+
+</div>
+
+<input type="file" id="fileInput" accept="application/json">
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const hasFSAccess = 'showOpenFilePicker' in window;
+
+  let journal = null;       // { trades: [...] , rates: {...} }
+  let fileHandle = null;    // File System Access handle, when supported
+  let fileName = null;
+
+  const els = {
+    fileStatus: $('fileStatus'),
+    startCard: $('startCard'),
+    formCard: $('formCard'),
+    listCard: $('listCard'),
+    statsCard: $('statsCard'),
+    tradeList: $('tradeList'),
+  };
+
+  function todayStr(){
+    const d = new Date();
+    return d.toISOString().slice(0,10);
+  }
+  function nowStr(){
+    const d = new Date();
+    return d.toTimeString().slice(0,5);
+  }
+
+  function blankJournal(){
+    return {
+      rates: { MNQ:2, MES:5, MGC:10, MYM:0.5 },
+      trades: []
+    };
+  }
+
+  function refreshUI(){
+    const open = !!journal;
+    els.startCard.style.display = open ? 'none' : 'block';
+    els.formCard.style.display = open ? 'block' : 'none';
+    els.listCard.style.display = open ? 'block' : 'none';
+    els.statsCard.style.display = open ? 'block' : 'none';
+    els.fileStatus.innerHTML = open
+      ? `Editing <strong>${fileName || 'journal'}</strong>`
+      : 'No journal open yet';
+    if(open){
+      $('vMNQ').value = journal.rates.MNQ;
+      $('vMES').value = journal.rates.MES;
+      $('vMGC').value = journal.rates.MGC;
+      $('vMYM').value = journal.rates.MYM;
+      $('fDate').value = todayStr();
+      $('fTime').value = nowStr();
+      renderTrades();
+      renderStats();
+    }
+  }
+
+  function renderStats(){
+    const t = journal.trades;
+    const n = t.length;
+    const wins = t.filter(x=>x.result==='win').length;
+    const decided = t.filter(x=>x.result!=='be').length;
+    const winRate = decided ? Math.round(100*wins/decided) : null;
+    const net = t.reduce((s,x)=> s + (Number(x.pl)||0), 0);
+    $('statTrades').querySelector('.n').textContent = n;
+    $('statWinRate').querySelector('.n').textContent = winRate===null ? '–' : winRate+'%';
+    const plEl = $('statPL');
+    plEl.querySelector('.n').textContent = (net>=0?'+':'-') + '$' + Math.abs(net).toFixed(0);
+    plEl.classList.toggle('pos', net>0);
+    plEl.classList.toggle('neg', net<0);
+  }
+
+  function renderTrades(){
+    const list = els.tradeList;
+    list.innerHTML = '';
+    if(journal.trades.length === 0){
+      list.innerHTML = '<div class="empty">No trades logged yet.</div>';
+      return;
+    }
+    const sorted = [...journal.trades].sort((a,b)=> (b.date+b.time).localeCompare(a.date+a.time));
+    for(const tr of sorted){
+      const row = document.createElement('div');
+      row.className = 'trade';
+      const pl = Number(tr.pl)||0;
+      row.innerHTML = `
+        <div class="side-mark ${tr.result}"></div>
+        <div class="main">
+          <div class="r1">
+            <span class="instr">${tr.instrument} · ${tr.direction === 'long' ? 'Long' : 'Short'}</span>
+            <span class="pl ${pl>=0?'pos':'neg'}">${pl>=0?'+':'-'}$${Math.abs(pl).toFixed(0)}</span>
+          </div>
+          <div class="r2">
+            <span>${tr.date} ${tr.time||''}</span>
+            ${(tr.setups||[]).map(s=>`<span class="tag">${s}</span>`).join('')}
+            ${tr.rmult ? `<span class="tag">${tr.rmult}R</span>` : ''}
+          </div>
+        </div>
+        <button class="del" data-id="${tr.id}" title="Delete">×</button>
+      `;
+      list.appendChild(row);
+    }
+    list.querySelectorAll('.del').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        journal.trades = journal.trades.filter(t=>t.id !== btn.dataset.id);
+        saveJournal();
+        renderTrades();
+        renderStats();
+      });
+    });
+  }
+
+  // ---- form interactions ----
+  let direction = null, result = null;
+  const setups = new Set();
+
+  function wireToggle(groupId, onSet){
+    document.querySelectorAll(`#${groupId} button`).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll(`#${groupId} button`).forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        onSet(btn.dataset.v);
+      });
+    });
+  }
+  wireToggle('fDirection', v => direction = v);
+  wireToggle('fResult', v => { result = v; autoFillPL(); });
+
+  document.querySelectorAll('#fSetups .chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      chip.classList.toggle('active');
+      const v = chip.dataset.v;
+      if(setups.has(v)) setups.delete(v); else setups.add(v);
+    });
+  });
+
+  function rateFor(instr){
+    if(!journal) return 1;
+    return Number(journal.rates[instr]) || Number($('v'+instr).value) || 1;
+  }
+
+  function calcRR(){
+    const entry = parseFloat($('fEntry').value);
+    const tp = parseFloat($('fTP').value);
+    const sl = parseFloat($('fSL').value);
+    if(isNaN(entry) || isNaN(tp) || isNaN(sl) || entry===sl) { $('calcRR').textContent = '–'; return null; }
+    const reward = Math.abs(tp - entry);
+    const risk = Math.abs(entry - sl);
+    if(risk === 0){ $('calcRR').textContent = '–'; return null; }
+    const rr = reward / risk;
+    $('calcRR').textContent = rr.toFixed(2) + ' : 1';
+    return rr;
+  }
+  ['fEntry','fTP','fSL'].forEach(id => $(id).addEventListener('input', ()=>{ calcRR(); autoFillPL(); }));
+  $('fInstr').addEventListener('change', autoFillPL);
+
+  function autoFillPL(){
+    if(!result) return;
+    const instr = $('fInstr').value;
+    const entry = parseFloat($('fEntry').value);
+    const tp = parseFloat($('fTP').value);
+    const sl = parseFloat($('fSL').value);
+    const rr = calcRR();
+    if(result === 'be'){ $('fPL').value = 0; $('fRmult').value = '0'; return; }
+    if(isNaN(entry)) return;
+    const rate = rateFor(instr);
+    let points, rmult;
+    if(result === 'win' && !isNaN(tp)){
+      points = Math.abs(tp - entry);
+      rmult = rr;
+    } else if(result === 'loss' && !isNaN(sl)){
+      points = -Math.abs(entry - sl);
+      rmult = rr !== null ? -1 : null;
+    } else {
+      return;
+    }
+    $('fPL').value = (points * rate).toFixed(2);
+    $('fRmult').value = rmult===null ? '' : (result==='loss' ? '-1' : rmult.toFixed(2));
+  }
+
+  $('btnAdd').addEventListener('click', ()=>{
+    const instrument = $('fInstr').value;
+    const date = $('fDate').value || todayStr();
+    const time = $('fTime').value || '';
+    const entry = $('fEntry').value;
+    const tp = $('fTP').value;
+    const sl = $('fSL').value;
+    const pl = parseFloat($('fPL').value) || 0;
+    const rmult = $('fRmult').value;
+    const notes = $('fNotes').value.trim();
+
+    if(!direction){ alert('Pick long or short.'); return; }
+    if(!result){ alert('Pick a result.'); return; }
+
+    journal.rates.MNQ = parseFloat($('vMNQ').value) || journal.rates.MNQ;
+    journal.rates.MES = parseFloat($('vMES').value) || journal.rates.MES;
+    journal.rates.MGC = parseFloat($('vMGC').value) || journal.rates.MGC;
+    journal.rates.MYM = parseFloat($('vMYM').value) || journal.rates.MYM;
+
+    journal.trades.push({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+      date, time, instrument, direction,
+      entry, tp, sl, result,
+      pl, rmult,
+      setups: [...setups],
+      notes
+    });
+
+    saveJournal();
+    renderTrades();
+    renderStats();
+
+    // reset form (keep date/time fresh, clear the rest)
+    document.querySelectorAll('#fDirection button, #fResult button, #fSetups .chip').forEach(b=>b.classList.remove('active'));
+    direction = null; result = null; setups.clear();
+    $('fEntry').value=''; $('fTP').value=''; $('fSL').value=''; $('fPL').value=''; $('fRmult').value=''; $('fNotes').value='';
+    $('calcRR').textContent = '–';
+    $('fDate').value = todayStr();
+    $('fTime').value = nowStr();
+  });
+
+  // ---- file handling ----
+  async function openJournal(){
+    if(hasFSAccess){
+      try{
+        const [handle] = await window.showOpenFilePicker({
+          types: [{ description:'Trade journal', accept:{'application/json':['.json']} }]
+        });
+        fileHandle = handle;
+        const file = await handle.getFile();
+        fileName = file.name;
+        const text = await file.text();
+        journal = JSON.parse(text);
+        refreshUI();
+      }catch(e){ /* cancelled */ }
+    } else {
+      $('fileInput').click();
+    }
+  }
+
+  $('fileInput').addEventListener('change', async (e)=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    fileName = file.name;
+    fileHandle = null;
+    const text = await file.text();
+    try{
+      journal = JSON.parse(text);
+      refreshUI();
+    }catch(err){
+      alert('That file could not be read as a journal.');
+    }
+    e.target.value = '';
+  });
+
+  async function newJournal(){
+    journal = blankJournal();
+    fileHandle = null;
+    if(hasFSAccess){
+      try{
+        fileHandle = await window.showSaveFilePicker({
+          suggestedName: 'trade-journal.json',
+          types: [{ description:'Trade journal', accept:{'application/json':['.json']} }]
+        });
+        const file = await fileHandle.getFile();
+        fileName = file.name;
+      }catch(e){ journal = null; return; }
+    } else {
+      fileName = 'trade-journal.json';
+    }
+    await saveJournal();
+    refreshUI();
+  }
+
+  async function saveJournal(){
+    if(!journal) return;
+    const text = JSON.stringify(journal, null, 2);
+    if(fileHandle){
+      try{
+        const writable = await fileHandle.createWritable();
+        await writable.write(text);
+        await writable.close();
+        return;
+      }catch(e){ /* fall through to download */ }
+    }
+    // fallback: trigger a download the user saves/overwrites manually
+    const blob = new Blob([text], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName || 'trade-journal.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  $('btnOpen').addEventListener('click', openJournal);
+  $('btnOpen2').addEventListener('click', openJournal);
+  $('btnNew').addEventListener('click', ()=>{ if(confirm('Start a new, empty journal?')) newJournal(); });
+  $('btnNew2').addEventListener('click', newJournal);
+
+})();
+</script>
+</body>
+</html>
