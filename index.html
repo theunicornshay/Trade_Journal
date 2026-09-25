@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="apple-touch-icon" href="icon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#131722">
+<meta name="apple-mobile-web-app-title" content="Trade Journal">
 <title>Trade Journal</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23131722'/%3E%3Cline x1='36' y1='18' x2='36' y2='80' stroke='%2326A69A' stroke-width='3' stroke-linecap='round'/%3E%3Crect x='27' y='28' width='18' height='40' rx='3' fill='%2326A69A'/%3E%3Cline x1='64' y1='26' x2='64' y2='76' stroke='%23EF5350' stroke-width='3' stroke-linecap='round'/%3E%3Crect x='55' y='38' width='18' height='26' rx='3' fill='%23EF5350'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFgklEQVR4nOzd228UVQDH8TM7e2m7W7ZlYWuBYuQSBRGMwTQkJvLAG0RRY2I0UXzRmBAS/wFfjAb+BgMxPGrAxPggxMRgjIZAgIjKTUq4lFpooaW73e1eZtyAIW3cH051hpwJ30/60MlO9mW/nZ6zM2cmWehbYYB2kgYQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkgJE2e+47hL+5zurEEEYnzkcJcv6X53u9uzoPX7zC/nSvu/Ns2mQXhifOTo2vbivTJaMuufTK9fbRCqOB85Hls0Z7O4yCBUcR6Qep5BlJitQCIOSMQBiTggEQck4oBEHJCIAxJxQCIOSMQRvrf7C2/1F4rp5Pe3pz4ZGhmvN0w8EUfIBvPZj1Yuvff7S4t7005i59nLJp6II2TPdnfN3nwm22liizhClnHmXCKTjPOldsQBiTggWR1HotCbXLXM7cm3fdXJpGdvplYtN+aFf+7me17z2mhj6Ko/UzOYD0vjcJcUs69suft5B9Xa+QH7e/VG9cix6nc/k0hwNo6X3P7F+Q/fmVcZ/yqRSnZt2dT93usGgdkYR/bNbU7SNRFIrRhID643CMa6ONziwtSyPhOZzMZ1BsHYF8fSCMtoSS3vN45BENYNSJ2OjImSk04Z3yAIvueARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMSccxbLpHYmM+uzXYmnTZn8Abz2dnnbnKuu2ug/anE4ZnascnyFYsvPiKOeWhl8cFAcceSRRk36NnsbNLd9fiDzjMfnSx9PHT9bLlq7BPvm9Q+TK2jxL51T7w/UAxeRhCD+dzBDavWZDuMfYgjqB39hecWRHKr5HQisWf1gLEPcQS1tdhjIrM217myM20sQxyBtP6nPNUV7cLGNfYtnGRAGkhr/tHhRvuH1JrXGMsQByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckLhhXFAXp6O9j+yl6oyxDHEEdaZUMZHxfP/U1LSxDHEEtff6WN2L6om0+0fGZjzrHndLHEGdLlX2XBoxEfitVNkdzTv/T8QxD5+PjG0/eeH4ZMmE5Eat/unQ8MunLjSsfEg2s5X5+bVceeP0UGfCeTrX6bZ7pMarxd7X+hbe37xdr+88e6XtW/1ZrV+2+Hkahjj+m4rnH7/Tfvw4uCA3e7Pm+UcnyyaerIujeXvSRKk5FdeP6uGzL47hGyZKzWujBsFYNyD1p8ozJ343kakeOWYQjI2zlfKBw145km+cKj+drJ+7ZBCMjXH409WJ3Z/VTp834fFqjdKBw9NfHjIIzNLZil+antp3MFHoSa4ccHvzbffp2Px8oiNzf7P+x5XWT5u38rzm8Gjj4lXf7nmjhayeynrjE7XxCfVqZtMGMzeOyqEfDcLD9xyQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4Qnan0Zy9eaveNLHFupWQfXXz1nD17wtHPN/fO3zTxBZHjpBNNrytJ85vXti9OJX8YaJ0sWLd8ujgiCN8Jc/7ZizaBRYPB3FAIg5IxAEpxrMVvzRntapXifbOO4+gGMcxeyGC32jUzwwZhMrtyvWaeKqdv+xN3PHvVlL+4ltvdNwgVE6hb4UB2mFACok4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkh/AQAA///sFQ/EAAAABklEQVQDAI/3NkvbwaE7AAAAAElFTkSuQmCC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FBF6F8;
-    --card:#FFFFFF;
-    --ink:#241A26;
-    --ink-soft:#6B5D6E;
-    --hairline:#EADDE3;
-    --pink:#D4537E;
-    --pink-deep:#993556;
-    --blue:#3D7BFF;
-    --blue-deep:#1B4FCC;
-    --green:#1D9E75;
-    --green-deep:#0F6E56;
-    --red:#D85A30;
-    --red-deep:#993C1D;
-    --radius:16px;
+    --bg:#131722;
+    --card:#1E222D;
+    --field:#171B26;
+    --line:#2A2E39;
+    --line-2:#363A45;
+    --ink:#D1D4DC;
+    --ink-hi:#F0F3FA;
+    --soft:#787B86;
+    --green:#26A69A;
+    --red:#EF5350;
+    --blue:#2962FF;
+    --gray:#5D606B;
+    --radius:14px;
     --radius-sm:10px;
-    font-family:'Inter',sans-serif;
+    color-scheme:dark;
+    font-family:'Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
@@ -34,613 +37,519 @@
     padding-bottom:calc(env(safe-area-inset-bottom,0px) + 32px);
     -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:560px;margin:0 auto;padding:0 18px;}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px;}
 
-  header.top{padding:28px 0 18px;}
-  header.top h1{
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    font-size:32px;
-    line-height:1.05;
-    margin:0 0 4px;
-    letter-spacing:-0.01em;
-  }
-  header.top p{margin:0;color:var(--ink-soft);font-size:14px;}
+  header.top{display:flex;align-items:center;gap:10px;padding:22px 0 16px;}
+  header.top svg{width:30px;height:30px;flex:none;}
+  header.top h1{font-size:22px;font-weight:700;margin:0;color:var(--ink-hi);letter-spacing:-0.01em;}
 
-  .filebar{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    background:var(--card);
-    border:1px solid var(--hairline);
-    border-radius:var(--radius);
-    padding:12px 14px;
-    margin-bottom:18px;
-    flex-wrap:wrap;
-  }
-  .filebar .status{flex:1 1 auto;font-size:13px;color:var(--ink-soft);min-width:120px;}
-  .filebar .status strong{color:var(--ink);font-weight:600;}
-  .btn{
-    appearance:none;border:none;cursor:pointer;
-    font-family:'Inter',sans-serif;font-weight:600;font-size:13px;
-    padding:9px 14px;border-radius:999px;
-    background:var(--ink);color:#fff;
-    transition:transform .08s ease;
-  }
-  .btn:active{transform:scale(0.96);}
-  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--hairline);}
-  .btn.pink{background:var(--pink);}
-  .btn.blue{background:var(--blue);}
-  .btn:disabled{opacity:.4;cursor:not-allowed;}
-  .btn.small{padding:7px 12px;font-size:12px;}
+  .tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:16px;}
+  .tabs button{flex:1;appearance:none;border:none;background:transparent;color:var(--soft);font:600 14px 'Inter',sans-serif;padding:9px 10px;border-radius:999px;cursor:pointer;}
+  .tabs button.active{background:var(--line-2);color:var(--ink-hi);}
 
-  .card{
-    background:var(--card);
-    border:1px solid var(--hairline);
-    border-radius:var(--radius);
-    padding:18px;
-    margin-bottom:16px;
-  }
-  .card h2{
-    font-family:'Fraunces',serif;
-    font-size:18px;
-    font-weight:600;
-    margin:0 0 14px;
-  }
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
+  .card h2{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);margin:0 0 14px;}
 
   .field{margin-bottom:12px;}
-  .field label{display:block;font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:5px;}
+  .field:last-child{margin-bottom:0;}
+  label{display:block;font-size:12px;font-weight:600;color:var(--soft);margin-bottom:6px;}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
   .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .row2>div,.row3>div{min-width:0;}
 
-  select, input[type=text], input[type=number], input[type=date], input[type=time], textarea{
-    width:100%;
-    font-family:'Inter',sans-serif;
-    font-size:15px;
-    padding:10px 11px;
+  input[type=text],input[type=number],input[type=datetime-local],textarea{
+    width:100%;min-width:0;
+    font:16px 'Inter',sans-serif;
+    padding:11px 12px;
     border-radius:var(--radius-sm);
-    border:1px solid var(--hairline);
-    background:#fff;
-    color:var(--ink);
+    border:1px solid var(--line);
+    background:var(--field);
+    color:var(--ink-hi);
+    -webkit-appearance:none;appearance:none;
   }
-  select:focus, input:focus, textarea:focus{outline:2px solid var(--blue);outline-offset:1px;}
-  textarea{resize:vertical;min-height:52px;font-size:14px;}
+  input[type=datetime-local]{font-size:15px;min-height:44px;}
+  input::placeholder,textarea::placeholder{color:var(--gray);}
+  input:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:0;border-color:transparent;}
+  textarea{resize:vertical;min-height:72px;line-height:1.4;}
+  #fInstr{text-transform:uppercase;font-weight:600;}
 
-  .toggle-group{display:flex;gap:8px;}
-  .toggle-group button{
-    flex:1;
-    padding:10px 8px;
-    border-radius:var(--radius-sm);
-    border:1px solid var(--hairline);
-    background:#fff;
-    font-weight:600;
-    font-size:13px;
-    color:var(--ink-soft);
-    cursor:pointer;
+  .toggle{display:flex;gap:8px;}
+  .toggle button{
+    flex:1;padding:11px 8px;border-radius:var(--radius-sm);
+    border:1px solid var(--line);background:var(--field);
+    font:600 14px 'Inter',sans-serif;color:var(--soft);cursor:pointer;
   }
-  .toggle-group button.active[data-v="long"]{background:var(--blue);border-color:var(--blue);color:#fff;}
-  .toggle-group button.active[data-v="short"]{background:var(--pink);border-color:var(--pink);color:#fff;}
-  .toggle-group button.active[data-v="win"]{background:var(--green);border-color:var(--green);color:#fff;}
-  .toggle-group button.active[data-v="loss"]{background:var(--red);border-color:var(--red);color:#fff;}
-  .toggle-group button.active[data-v="be"]{background:var(--ink-soft);border-color:var(--ink-soft);color:#fff;}
+  .toggle button.active.g{background:var(--green);border-color:var(--green);color:#fff;}
+  .toggle button.active.r{background:var(--red);border-color:var(--red);color:#fff;}
+  .toggle button.active.n{background:var(--gray);border-color:var(--gray);color:#fff;}
 
-  .chip-group{display:flex;flex-wrap:wrap;gap:7px;}
-  .chip{
-    padding:7px 12px;
-    border-radius:999px;
-    border:1px solid var(--hairline);
-    background:#fff;
-    font-size:13px;
-    font-weight:600;
-    color:var(--ink-soft);
-    cursor:pointer;
+  .shot{
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;
+    width:100%;min-height:120px;border:1.5px dashed var(--line-2);border-radius:var(--radius-sm);
+    background:var(--field);color:var(--soft);font-size:13px;font-weight:600;cursor:pointer;overflow:hidden;position:relative;
   }
-  .chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
-
-  .calc-out{
-    display:flex;justify-content:space-between;align-items:baseline;
-    background:#FAF3F6;border-radius:var(--radius-sm);padding:10px 12px;
-    margin-top:4px;font-size:13px;color:var(--ink-soft);
-  }
-  .calc-out strong{font-size:16px;color:var(--ink);font-weight:700;}
-
-  .save-row{display:flex;gap:10px;margin-top:4px;}
-  .save-row .btn{flex:1;}
-
-  /* Stats */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-  .stat{background:#FAF3F6;border-radius:var(--radius-sm);padding:12px 10px;text-align:center;}
-  .stat .n{font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
-  .stat .l{font-size:11px;color:var(--ink-soft);margin-top:2px;}
-  .stat.pos .n{color:var(--green-deep);}
-  .stat.neg .n{color:var(--red-deep);}
-
-  /* Trade list */
-  .trade{
-    border:1px solid var(--hairline);
-    border-radius:var(--radius-sm);
-    padding:12px 13px;
-    margin-bottom:9px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .trade .side-mark{
-    width:6px;align-self:stretch;border-radius:4px;flex:none;
-  }
-  .trade .side-mark.win{background:var(--green);}
-  .trade .side-mark.loss{background:var(--red);}
-  .trade .side-mark.be{background:var(--ink-soft);}
-  .trade .main{flex:1;min-width:0;}
-  .trade .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
-  .trade .instr{font-weight:700;font-size:15px;}
-  .trade .pl{font-weight:700;font-size:15px;}
-  .trade .pl.pos{color:var(--green-deep);}
-  .trade .pl.neg{color:var(--red-deep);}
-  .trade .r2{font-size:12px;color:var(--ink-soft);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;}
-  .trade .tag{background:var(--hairline);border-radius:999px;padding:1px 8px;font-weight:600;}
-  .trade .del{background:none;border:none;color:var(--ink-soft);font-size:18px;cursor:pointer;padding:2px 6px;flex:none;}
-
-  .empty{text-align:center;color:var(--ink-soft);font-size:14px;padding:28px 10px;}
-  .empty .glyph{font-size:26px;display:block;margin-bottom:8px;}
-
-  details.settings summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-soft);list-style:none;display:flex;align-items:center;gap:6px;}
-  details.settings summary::-webkit-details-marker{display:none;}
-  details.settings summary::after{content:'›';transform:rotate(90deg);transition:transform .15s;font-size:16px;}
-  details.settings[open] summary::after{transform:rotate(-90deg);}
-  details.settings .row2{margin-top:12px;}
-  .hint{font-size:11px;color:var(--ink-soft);margin-top:4px;}
-
+  .shot .plus{font-size:24px;line-height:1;color:var(--gray);}
+  .shot img{display:block;width:100%;height:auto;}
+  .shot.has{border-style:solid;min-height:0;}
+  .shot .swap{position:absolute;right:8px;bottom:8px;background:rgba(19,23,34,.85);color:var(--ink);font-size:11px;padding:4px 9px;border-radius:999px;}
   input[type=file]{display:none;}
+
+  .btn{
+    appearance:none;border:none;cursor:pointer;width:100%;
+    font:700 15px 'Inter',sans-serif;padding:14px;border-radius:12px;
+    background:var(--blue);color:#fff;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn.ghost{background:transparent;border:1px solid var(--line-2);color:var(--ink);}
+
+  .banner{display:none;align-items:center;justify-content:space-between;gap:10px;background:rgba(38,166,154,.12);border:1px solid rgba(38,166,154,.4);color:var(--ink-hi);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:14px;font-weight:600;}
+  .banner.show{display:flex;}
+  .banner button{appearance:none;border:none;background:var(--green);color:#fff;font:700 13px 'Inter',sans-serif;padding:8px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;}
+  .fname{font-size:12px;color:var(--soft);text-align:center;margin-top:8px;word-break:break-all;}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .stat{background:var(--field);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 8px;text-align:center;}
+  .stat .n{font-size:20px;font-weight:700;color:var(--ink-hi);font-variant-numeric:tabular-nums;}
+  .stat .l{font-size:11px;color:var(--soft);margin-top:3px;}
+  .pos{color:var(--green)!important;}
+  .neg{color:var(--red)!important;}
+
+  .trade{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);}
+  .trade:first-child{border-top:none;}
+  .trade .bar{width:4px;align-self:stretch;border-radius:3px;flex:none;}
+  .trade .main{flex:1;min-width:0;}
+  .trade .t1{font-weight:700;font-size:14px;color:var(--ink-hi);}
+  .trade .t2{font-size:12px;color:var(--soft);margin-top:2px;}
+  .trade .pl{font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;}
+  .empty{text-align:center;color:var(--soft);font-size:14px;padding:18px 6px;}
+  .muted{font-size:12px;color:var(--soft);margin-top:8px;}
+  [hidden]{display:none!important;}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="top">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <rect width="100" height="100" rx="22" fill="#1E222D"/>
+      <line x1="36" y1="18" x2="36" y2="80" stroke="#26A69A" stroke-width="4" stroke-linecap="round"/>
+      <rect x="27" y="28" width="18" height="40" rx="3" fill="#26A69A"/>
+      <line x1="64" y1="26" x2="64" y2="76" stroke="#EF5350" stroke-width="4" stroke-linecap="round"/>
+      <rect x="55" y="38" width="18" height="26" rx="3" fill="#EF5350"/>
+    </svg>
     <h1>Trade Journal</h1>
-    <p>Logged in seconds. Saved to a file only you hold.</p>
   </header>
 
-  <div class="filebar">
-    <div class="status" id="fileStatus">No journal open yet</div>
-    <button class="btn ghost small" id="btnOpen">Open</button>
-    <button class="btn ghost small" id="btnNew">New</button>
+  <div class="tabs">
+    <button type="button" class="active" data-tab="log">Log trade</button>
+    <button type="button" data-tab="week">Weekly check-in</button>
   </div>
 
-  <div class="card" id="statsCard" style="display:none;">
-    <h2>This journal</h2>
-    <div class="stats">
-      <div class="stat" id="statTrades"><div class="n">0</div><div class="l">Trades</div></div>
-      <div class="stat" id="statWinRate"><div class="n">–</div><div class="l">Win rate</div></div>
-      <div class="stat" id="statPL"><div class="n">$0</div><div class="l">Net P/L</div></div>
-    </div>
-  </div>
+  <!-- ============ LOG TRADE ============ -->
+  <section id="tab-log">
 
-  <div class="card" id="formCard" style="display:none;">
-    <h2>Log a trade</h2>
-
-    <div class="row2 field">
-      <div>
-        <label>Date</label>
-        <input type="date" id="fDate">
-      </div>
-      <div>
-        <label>Time</label>
-        <input type="time" id="fTime">
-      </div>
+    <div class="banner" id="savedBanner">
+      <span>Trade saved ✓</span>
+      <button type="button" id="btnNext">Start next trade</button>
     </div>
 
-    <div class="field">
-      <label>Instrument</label>
-      <select id="fInstr">
-        <option value="MNQ">MNQ</option>
-        <option value="MES">MES</option>
-        <option value="MGC">MGC</option>
-        <option value="MYM">MYM</option>
-        <option value="OTHER">Other</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>Direction</label>
-      <div class="toggle-group" id="fDirection">
-        <button type="button" data-v="long">Long</button>
-        <button type="button" data-v="short">Short</button>
+    <div class="card">
+      <h2>Trade</h2>
+      <div class="field">
+        <label for="fInstr">Instrument</label>
+        <input type="text" id="fInstr" placeholder="MNQ" autocomplete="off" autocapitalize="characters" spellcheck="false">
       </div>
-    </div>
-
-    <div class="row3 field">
-      <div>
-        <label>Entry</label>
-        <input type="number" step="any" id="fEntry" inputmode="decimal">
+      <div class="field">
+        <label>Direction</label>
+        <div class="toggle" id="fDir">
+          <button type="button" class="g" data-v="long">Long</button>
+          <button type="button" class="r" data-v="short">Short</button>
+        </div>
       </div>
-      <div>
-        <label>Take profit</label>
-        <input type="number" step="any" id="fTP" inputmode="decimal">
+      <div class="row2 field">
+        <div>
+          <label for="fEntryAt">Entry date &amp; time</label>
+          <input type="datetime-local" id="fEntryAt">
+        </div>
+        <div>
+          <label for="fExitAt">Exit date &amp; time</label>
+          <input type="datetime-local" id="fExitAt">
+        </div>
       </div>
-      <div>
-        <label>Stop loss</label>
-        <input type="number" step="any" id="fSL" inputmode="decimal">
+      <div class="row3 field">
+        <div>
+          <label for="fEntry">Entry</label>
+          <input type="number" step="any" inputmode="decimal" id="fEntry">
+        </div>
+        <div>
+          <label for="fTP">Take profit</label>
+          <input type="number" step="any" inputmode="decimal" id="fTP">
+        </div>
+        <div>
+          <label for="fSL">Stop loss</label>
+          <input type="number" step="any" inputmode="decimal" id="fSL">
+        </div>
       </div>
     </div>
 
-    <div class="calc-out">
-      <span>Risk:reward</span>
-      <strong id="calcRR">–</strong>
-    </div>
-
-    <div class="field" style="margin-top:12px;">
-      <label>Setup(s) used — tap all that apply</label>
-      <div class="chip-group" id="fSetups">
-        <button type="button" class="chip" data-v="CHoCH">CHoCH</button>
-        <button type="button" class="chip" data-v="BOS">BOS</button>
-        <button type="button" class="chip" data-v="MSS">MSS</button>
-        <button type="button" class="chip" data-v="FVG">FVG</button>
-        <button type="button" class="chip" data-v="CRT">CRT</button>
-        <button type="button" class="chip" data-v="ICC">ICC</button>
-        <button type="button" class="chip" data-v="Other">Other</button>
+    <div class="card">
+      <h2>Before</h2>
+      <div class="field">
+        <label>Screenshot</label>
+        <div class="shot" id="shotBefore" role="button" tabindex="0"><span class="plus">+</span>Add before screenshot</div>
+        <input type="file" accept="image/*" id="fileBefore">
+      </div>
+      <div class="field">
+        <label for="fWhy">Why I took it</label>
+        <textarea id="fWhy"></textarea>
       </div>
     </div>
 
-    <div class="field">
-      <label>Result</label>
-      <div class="toggle-group" id="fResult">
-        <button type="button" data-v="win">Win</button>
-        <button type="button" data-v="loss">Loss</button>
-        <button type="button" data-v="be">Break even</button>
+    <div class="card">
+      <h2>After</h2>
+      <div class="field">
+        <label>Screenshot</label>
+        <div class="shot" id="shotAfter" role="button" tabindex="0"><span class="plus">+</span>Add after screenshot</div>
+        <input type="file" accept="image/*" id="fileAfter">
+      </div>
+      <div class="field">
+        <label for="fResults">Results</label>
+        <textarea id="fResults"></textarea>
+      </div>
+      <div class="field">
+        <label>Outcome</label>
+        <div class="toggle" id="fOutcome">
+          <button type="button" class="g" data-v="win">Win</button>
+          <button type="button" class="r" data-v="loss">Loss</button>
+          <button type="button" class="n" data-v="be">Break even</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fPL">P/L ($)</label>
+        <input type="number" step="any" inputmode="decimal" id="fPL" placeholder="e.g. 120 or -45">
       </div>
     </div>
 
-    <div class="row2 field" id="plRow">
-      <div>
-        <label>P/L ($)</label>
-        <input type="number" step="any" id="fPL" inputmode="decimal" placeholder="auto-filled, editable">
+    <button type="button" class="btn" id="btnSave">Save trade</button>
+    <div class="fname" id="fnamePreview"></div>
+  </section>
+
+  <!-- ============ WEEKLY CHECK-IN ============ -->
+  <section id="tab-week" hidden>
+
+    <div class="banner" id="weekBanner">
+      <span>Check-in saved ✓</span>
+    </div>
+
+    <div class="card">
+      <h2>This week's trades</h2>
+      <button type="button" class="btn ghost" id="btnPick">Choose trade files</button>
+      <input type="file" id="fileTrades" accept=".html,.htm,text/html" multiple>
+      <div id="weekStats" hidden style="margin-top:14px;">
+        <div class="stats">
+          <div class="stat"><div class="n" id="sCount">0</div><div class="l">Trades</div></div>
+          <div class="stat"><div class="n" id="sWin">–</div><div class="l">Win rate</div></div>
+          <div class="stat"><div class="n" id="sPL">$0</div><div class="l">Net P/L</div></div>
+        </div>
+        <div id="weekList" style="margin-top:12px;"></div>
       </div>
-      <div>
-        <label>R multiple</label>
-        <input type="text" id="fRmult" disabled placeholder="auto">
-      </div>
+      <div class="muted" id="weekMsg"></div>
     </div>
 
-    <div class="field">
-      <label>Notes — optional</label>
-      <textarea id="fNotes" placeholder="Anything worth remembering. Leave blank if not."></textarea>
+    <div class="card">
+      <h2>Reflection</h2>
+      <div class="field"><label for="q1">Did I follow my trading plan/rules?</label><textarea id="q1"></textarea></div>
+      <div class="field"><label for="q2">What did I do well?</label><textarea id="q2"></textarea></div>
+      <div class="field"><label for="q3">One thing I can improve next week?</label><textarea id="q3"></textarea></div>
+      <div class="field"><label for="q4">How do I feel about this week?</label><textarea id="q4"></textarea></div>
     </div>
 
-    <details class="settings">
-      <summary>Dollar value per point (for auto P/L)</summary>
-      <div class="row2">
-        <div class="field"><label>MNQ</label><input type="number" step="any" id="vMNQ" value="2"></div>
-        <div class="field"><label>MES</label><input type="number" step="any" id="vMES" value="5"></div>
-        <div class="field"><label>MGC</label><input type="number" step="any" id="vMGC" value="10"></div>
-        <div class="field"><label>MYM</label><input type="number" step="any" id="vMYM" value="0.50"></div>
-      </div>
-      <p class="hint">These are typical values — double check against your broker/contract specs. Saved with your journal.</p>
-    </details>
-
-    <button class="btn pink" id="btnAdd" style="width:100%;margin-top:14px;">Save trade</button>
-  </div>
-
-  <div class="card" id="listCard" style="display:none;">
-    <h2>Trades</h2>
-    <div id="tradeList"></div>
-  </div>
-
-  <div class="card" id="startCard">
-    <div class="empty">
-      <span class="glyph">🦄</span>
-      Open an existing journal file, or start a new one.<br>Everything stays on your device.
-    </div>
-    <div class="save-row">
-      <button class="btn ghost" id="btnOpen2">Open journal</button>
-      <button class="btn pink" id="btnNew2">New journal</button>
-    </div>
-  </div>
+    <button type="button" class="btn" id="btnSaveWeek">Save check-in</button>
+    <div class="fname" id="weekFname"></div>
+  </section>
 
 </div>
-
-<input type="file" id="fileInput" accept="application/json">
 
 <script>
 (function(){
   const $ = id => document.getElementById(id);
-  const hasFSAccess = 'showOpenFilePicker' in window;
+  const pad = n => String(n).padStart(2,'0');
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  let journal = null;       // { trades: [...] , rates: {...} }
-  let fileHandle = null;    // File System Access handle, when supported
-  let fileName = null;
-
-  const els = {
-    fileStatus: $('fileStatus'),
-    startCard: $('startCard'),
-    formCard: $('formCard'),
-    listCard: $('listCard'),
-    statsCard: $('statsCard'),
-    tradeList: $('tradeList'),
-  };
-
-  function todayStr(){
+  function nowLocal(){
     const d = new Date();
-    return d.toISOString().slice(0,10);
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
   }
-  function nowStr(){
-    const d = new Date();
-    return d.toTimeString().slice(0,5);
+  function todayStr(){ return nowLocal().slice(0,10); }
+  function prettyDT(v){
+    if(!v) return '';
+    const [d,t] = v.split('T');
+    const [y,m,day] = d.split('-').map(Number);
+    let [h,mi] = (t||'00:00').split(':').map(Number);
+    const ap = h>=12 ? 'PM' : 'AM'; h = h%12 || 12;
+    const mon = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1];
+    return `${mon} ${day}, ${y} · ${h}:${pad(mi)} ${ap}`;
+  }
+  function money(n){
+    n = Number(n)||0;
+    return (n<0?'-':'+') + '$' + Math.abs(n).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2});
   }
 
-  function blankJournal(){
-    return {
-      rates: { MNQ:2, MES:5, MGC:10, MYM:0.5 },
-      trades: []
+  /* ---------- tabs ---------- */
+  document.querySelectorAll('.tabs button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active', x===b));
+      $('tab-log').hidden = b.dataset.tab !== 'log';
+      $('tab-week').hidden = b.dataset.tab !== 'week';
+      window.scrollTo(0,0);
+    });
+  });
+
+  /* ---------- toggles ---------- */
+  const state = { dir:null, outcome:null, before:null, after:null };
+  function wireToggle(id, key){
+    document.querySelectorAll(`#${id} button`).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const on = !btn.classList.contains('active');
+        document.querySelectorAll(`#${id} button`).forEach(b=>b.classList.remove('active'));
+        if(on) btn.classList.add('active');
+        state[key] = on ? btn.dataset.v : null;
+        if(key==='outcome') fixPLSign();
+      });
+    });
+  }
+  wireToggle('fDir','dir');
+  wireToggle('fOutcome','outcome');
+
+  function fixPLSign(){
+    const el = $('fPL'); const v = parseFloat(el.value);
+    if(isNaN(v)) return;
+    if(state.outcome==='loss' && v>0) el.value = -v;
+    if(state.outcome==='win' && v<0) el.value = -v;
+  }
+  $('fPL').addEventListener('blur', fixPLSign);
+
+  /* ---------- screenshots ---------- */
+  function compress(file){
+    return new Promise((resolve,reject)=>{
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = ()=>{
+        const max = 1800;
+        let w = img.naturalWidth, h = img.naturalHeight;
+        const s = Math.min(1, max/Math.max(w,h));
+        w = Math.round(w*s); h = Math.round(h*s);
+        const c = document.createElement('canvas'); c.width=w; c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL('image/jpeg',0.85));
+      };
+      img.onerror = ()=>{ URL.revokeObjectURL(url); reject(); };
+      img.src = url;
+    });
+  }
+  function wireShot(boxId, inputId, key, label){
+    const box = $(boxId), input = $(inputId);
+    const open = ()=> input.click();
+    box.addEventListener('click', open);
+    box.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+    input.addEventListener('change', async ()=>{
+      const f = input.files[0]; input.value='';
+      if(!f) return;
+      try{
+        state[key] = await compress(f);
+        box.classList.add('has');
+        box.innerHTML = `<img src="${state[key]}" alt=""><span class="swap">Change</span>`;
+      }catch(e){ alert('That image could not be loaded.'); }
+    });
+    box._reset = ()=>{
+      state[key]=null; box.classList.remove('has');
+      box.innerHTML = `<span class="plus">+</span>${label}`;
     };
   }
+  wireShot('shotBefore','fileBefore','before','Add before screenshot');
+  wireShot('shotAfter','fileAfter','after','Add after screenshot');
 
-  function refreshUI(){
-    const open = !!journal;
-    els.startCard.style.display = open ? 'none' : 'block';
-    els.formCard.style.display = open ? 'block' : 'none';
-    els.listCard.style.display = open ? 'block' : 'none';
-    els.statsCard.style.display = open ? 'block' : 'none';
-    els.fileStatus.innerHTML = open
-      ? `Editing <strong>${fileName || 'journal'}</strong>`
-      : 'No journal open yet';
-    if(open){
-      $('vMNQ').value = journal.rates.MNQ;
-      $('vMES').value = journal.rates.MES;
-      $('vMGC').value = journal.rates.MGC;
-      $('vMYM').value = journal.rates.MYM;
-      $('fDate').value = todayStr();
-      $('fTime').value = nowStr();
-      renderTrades();
-      renderStats();
+  /* ---------- file name ---------- */
+  function cleanInstr(){ return ($('fInstr').value||'').trim().toUpperCase().replace(/[^A-Z0-9!._-]+/g,''); }
+  function tradeFileName(){
+    const at = $('fEntryAt').value || nowLocal();
+    const [d,t] = at.split('T');
+    return `${d}_${cleanInstr()||'TRADE'}_${(t||'0000').replace(':','').slice(0,4)}.html`;
+  }
+  function updateFname(){ $('fnamePreview').textContent = cleanInstr() ? 'Saves as ' + tradeFileName() : ''; }
+  ['fInstr','fEntryAt'].forEach(id=>$(id).addEventListener('input', updateFname));
+
+  /* ---------- deliver a file ---------- */
+  async function deliver(html, name){
+    const file = new File([html], name, {type:'text/html'});
+    if(navigator.canShare && navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file]}); return true; }
+      catch(e){ if(e && e.name==='AbortError') return false; }
     }
-  }
-
-  function renderStats(){
-    const t = journal.trades;
-    const n = t.length;
-    const wins = t.filter(x=>x.result==='win').length;
-    const decided = t.filter(x=>x.result!=='be').length;
-    const winRate = decided ? Math.round(100*wins/decided) : null;
-    const net = t.reduce((s,x)=> s + (Number(x.pl)||0), 0);
-    $('statTrades').querySelector('.n').textContent = n;
-    $('statWinRate').querySelector('.n').textContent = winRate===null ? '–' : winRate+'%';
-    const plEl = $('statPL');
-    plEl.querySelector('.n').textContent = (net>=0?'+':'-') + '$' + Math.abs(net).toFixed(0);
-    plEl.classList.toggle('pos', net>0);
-    plEl.classList.toggle('neg', net<0);
-  }
-
-  function renderTrades(){
-    const list = els.tradeList;
-    list.innerHTML = '';
-    if(journal.trades.length === 0){
-      list.innerHTML = '<div class="empty">No trades logged yet.</div>';
-      return;
-    }
-    const sorted = [...journal.trades].sort((a,b)=> (b.date+b.time).localeCompare(a.date+a.time));
-    for(const tr of sorted){
-      const row = document.createElement('div');
-      row.className = 'trade';
-      const pl = Number(tr.pl)||0;
-      row.innerHTML = `
-        <div class="side-mark ${tr.result}"></div>
-        <div class="main">
-          <div class="r1">
-            <span class="instr">${tr.instrument} · ${tr.direction === 'long' ? 'Long' : 'Short'}</span>
-            <span class="pl ${pl>=0?'pos':'neg'}">${pl>=0?'+':'-'}$${Math.abs(pl).toFixed(0)}</span>
-          </div>
-          <div class="r2">
-            <span>${tr.date} ${tr.time||''}</span>
-            ${(tr.setups||[]).map(s=>`<span class="tag">${s}</span>`).join('')}
-            ${tr.rmult ? `<span class="tag">${tr.rmult}R</span>` : ''}
-          </div>
-        </div>
-        <button class="del" data-id="${tr.id}" title="Delete">×</button>
-      `;
-      list.appendChild(row);
-    }
-    list.querySelectorAll('.del').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        journal.trades = journal.trades.filter(t=>t.id !== btn.dataset.id);
-        saveJournal();
-        renderTrades();
-        renderStats();
-      });
-    });
-  }
-
-  // ---- form interactions ----
-  let direction = null, result = null;
-  const setups = new Set();
-
-  function wireToggle(groupId, onSet){
-    document.querySelectorAll(`#${groupId} button`).forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        document.querySelectorAll(`#${groupId} button`).forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        onSet(btn.dataset.v);
-      });
-    });
-  }
-  wireToggle('fDirection', v => direction = v);
-  wireToggle('fResult', v => { result = v; autoFillPL(); });
-
-  document.querySelectorAll('#fSetups .chip').forEach(chip=>{
-    chip.addEventListener('click', ()=>{
-      chip.classList.toggle('active');
-      const v = chip.dataset.v;
-      if(setups.has(v)) setups.delete(v); else setups.add(v);
-    });
-  });
-
-  function rateFor(instr){
-    if(!journal) return 1;
-    return Number(journal.rates[instr]) || Number($('v'+instr).value) || 1;
-  }
-
-  function calcRR(){
-    const entry = parseFloat($('fEntry').value);
-    const tp = parseFloat($('fTP').value);
-    const sl = parseFloat($('fSL').value);
-    if(isNaN(entry) || isNaN(tp) || isNaN(sl) || entry===sl) { $('calcRR').textContent = '–'; return null; }
-    const reward = Math.abs(tp - entry);
-    const risk = Math.abs(entry - sl);
-    if(risk === 0){ $('calcRR').textContent = '–'; return null; }
-    const rr = reward / risk;
-    $('calcRR').textContent = rr.toFixed(2) + ' : 1';
-    return rr;
-  }
-  ['fEntry','fTP','fSL'].forEach(id => $(id).addEventListener('input', ()=>{ calcRR(); autoFillPL(); }));
-  $('fInstr').addEventListener('change', autoFillPL);
-
-  function autoFillPL(){
-    if(!result) return;
-    const instr = $('fInstr').value;
-    const entry = parseFloat($('fEntry').value);
-    const tp = parseFloat($('fTP').value);
-    const sl = parseFloat($('fSL').value);
-    const rr = calcRR();
-    if(result === 'be'){ $('fPL').value = 0; $('fRmult').value = '0'; return; }
-    if(isNaN(entry)) return;
-    const rate = rateFor(instr);
-    let points, rmult;
-    if(result === 'win' && !isNaN(tp)){
-      points = Math.abs(tp - entry);
-      rmult = rr;
-    } else if(result === 'loss' && !isNaN(sl)){
-      points = -Math.abs(entry - sl);
-      rmult = rr !== null ? -1 : null;
-    } else {
-      return;
-    }
-    $('fPL').value = (points * rate).toFixed(2);
-    $('fRmult').value = rmult===null ? '' : (result==='loss' ? '-1' : rmult.toFixed(2));
-  }
-
-  $('btnAdd').addEventListener('click', ()=>{
-    const instrument = $('fInstr').value;
-    const date = $('fDate').value || todayStr();
-    const time = $('fTime').value || '';
-    const entry = $('fEntry').value;
-    const tp = $('fTP').value;
-    const sl = $('fSL').value;
-    const pl = parseFloat($('fPL').value) || 0;
-    const rmult = $('fRmult').value;
-    const notes = $('fNotes').value.trim();
-
-    if(!direction){ alert('Pick long or short.'); return; }
-    if(!result){ alert('Pick a result.'); return; }
-
-    journal.rates.MNQ = parseFloat($('vMNQ').value) || journal.rates.MNQ;
-    journal.rates.MES = parseFloat($('vMES').value) || journal.rates.MES;
-    journal.rates.MGC = parseFloat($('vMGC').value) || journal.rates.MGC;
-    journal.rates.MYM = parseFloat($('vMYM').value) || journal.rates.MYM;
-
-    journal.trades.push({
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
-      date, time, instrument, direction,
-      entry, tp, sl, result,
-      pl, rmult,
-      setups: [...setups],
-      notes
-    });
-
-    saveJournal();
-    renderTrades();
-    renderStats();
-
-    // reset form (keep date/time fresh, clear the rest)
-    document.querySelectorAll('#fDirection button, #fResult button, #fSetups .chip').forEach(b=>b.classList.remove('active'));
-    direction = null; result = null; setups.clear();
-    $('fEntry').value=''; $('fTP').value=''; $('fSL').value=''; $('fPL').value=''; $('fRmult').value=''; $('fNotes').value='';
-    $('calcRR').textContent = '–';
-    $('fDate').value = todayStr();
-    $('fTime').value = nowStr();
-  });
-
-  // ---- file handling ----
-  async function openJournal(){
-    if(hasFSAccess){
-      try{
-        const [handle] = await window.showOpenFilePicker({
-          types: [{ description:'Trade journal', accept:{'application/json':['.json']} }]
-        });
-        fileHandle = handle;
-        const file = await handle.getFile();
-        fileName = file.name;
-        const text = await file.text();
-        journal = JSON.parse(text);
-        refreshUI();
-      }catch(e){ /* cancelled */ }
-    } else {
-      $('fileInput').click();
-    }
-  }
-
-  $('fileInput').addEventListener('change', async (e)=>{
-    const file = e.target.files[0];
-    if(!file) return;
-    fileName = file.name;
-    fileHandle = null;
-    const text = await file.text();
-    try{
-      journal = JSON.parse(text);
-      refreshUI();
-    }catch(err){
-      alert('That file could not be read as a journal.');
-    }
-    e.target.value = '';
-  });
-
-  async function newJournal(){
-    journal = blankJournal();
-    fileHandle = null;
-    if(hasFSAccess){
-      try{
-        fileHandle = await window.showSaveFilePicker({
-          suggestedName: 'trade-journal.json',
-          types: [{ description:'Trade journal', accept:{'application/json':['.json']} }]
-        });
-        const file = await fileHandle.getFile();
-        fileName = file.name;
-      }catch(e){ journal = null; return; }
-    } else {
-      fileName = 'trade-journal.json';
-    }
-    await saveJournal();
-    refreshUI();
-  }
-
-  async function saveJournal(){
-    if(!journal) return;
-    const text = JSON.stringify(journal, null, 2);
-    if(fileHandle){
-      try{
-        const writable = await fileHandle.createWritable();
-        await writable.write(text);
-        await writable.close();
-        return;
-      }catch(e){ /* fall through to download */ }
-    }
-    // fallback: trigger a download the user saves/overwrites manually
-    const blob = new Blob([text], {type:'application/json'});
-    const url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(file);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = fileName || 'trade-journal.json';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+    return true;
   }
 
-  $('btnOpen').addEventListener('click', openJournal);
-  $('btnOpen2').addEventListener('click', openJournal);
-  $('btnNew').addEventListener('click', ()=>{ if(confirm('Start a new, empty journal?')) newJournal(); });
-  $('btnNew2').addEventListener('click', newJournal);
+  /* ---------- shared file styles ---------- */
+  const FILE_CSS = `
+  body{margin:0;background:#131722;color:#D1D4DC;font-family:-apple-system,BlinkMacSystemFont,'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  .w{max-width:760px;margin:0 auto;padding:24px 16px 40px;}
+  h1{font-size:24px;margin:0 0 4px;color:#F0F3FA;}
+  .sub{color:#787B86;font-size:14px;margin-bottom:18px;}
+  .c{background:#1E222D;border:1px solid #2A2E39;border-radius:14px;padding:16px;margin-bottom:14px;}
+  h2{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#787B86;margin:0 0 12px;}
+  .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;}
+  .k{font-size:12px;color:#787B86;}
+  .v{font-size:16px;font-weight:600;color:#F0F3FA;margin-top:2px;}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:700;color:#fff;}
+  .green{background:#26A69A}.red{background:#EF5350}.gray{background:#5D606B}
+  .pos{color:#26A69A}.neg{color:#EF5350}
+  img{display:block;max-width:100%;border-radius:10px;border:1px solid #2A2E39;margin-bottom:12px;}
+  p.t{white-space:pre-wrap;margin:4px 0 0;line-height:1.45;color:#F0F3FA;}
+  .row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #2A2E39;font-size:14px;}
+  .row:first-child{border-top:none;}
+  `;
 
+  /* ---------- save trade ---------- */
+  $('btnSave').addEventListener('click', async ()=>{
+    if(!cleanInstr()){ alert('Type the instrument first.'); $('fInstr').focus(); return; }
+    fixPLSign();
+    if(!$('fEntryAt').value) $('fEntryAt').value = nowLocal();
+
+    const data = {
+      type:'trade', v:1,
+      instrument: cleanInstr(),
+      direction: state.dir,
+      entryAt: $('fEntryAt').value,
+      exitAt: $('fExitAt').value,
+      entry: $('fEntry').value, tp: $('fTP').value, sl: $('fSL').value,
+      why: $('fWhy').value.trim(),
+      results: $('fResults').value.trim(),
+      outcome: state.outcome,
+      pl: $('fPL').value === '' ? null : Number($('fPL').value)
+    };
+    const name = tradeFileName();
+    const html = buildTradeFile(data, state.before, state.after);
+    const ok = await deliver(html, name);
+    if(ok){ $('savedBanner').classList.add('show'); window.scrollTo({top:0,behavior:'smooth'}); }
+  });
+
+  function buildTradeFile(d, before, after){
+    const dirPill = d.direction==='long' ? '<span class="pill green">Long</span>' : d.direction==='short' ? '<span class="pill red">Short</span>' : '–';
+    const outPill = d.outcome==='win' ? '<span class="pill green">Win</span>' : d.outcome==='loss' ? '<span class="pill red">Loss</span>' : d.outcome==='be' ? '<span class="pill gray">Break even</span>' : '–';
+    const plTxt = d.pl===null ? '–' : `<span class="${d.pl>0?'pos':d.pl<0?'neg':''}">${money(d.pl)}</span>`;
+    const json = JSON.stringify(d).replace(/</g,'\\u003c');
+    return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(d.instrument)} · ${esc(d.entryAt.slice(0,10))}</title><style>${FILE_CSS}</style>
+<script type="application/json" id="trade-data">${json}<\/script></head><body><div class="w">
+<h1>${esc(d.instrument)}</h1><div class="sub">${esc(prettyDT(d.entryAt))}</div>
+<div class="c"><h2>Trade</h2><div class="g">
+<div><div class="k">Direction</div><div class="v">${dirPill}</div></div>
+<div><div class="k">Outcome</div><div class="v">${outPill}</div></div>
+<div><div class="k">P/L</div><div class="v">${plTxt}</div></div>
+<div><div class="k">Entry time</div><div class="v">${esc(prettyDT(d.entryAt))||'–'}</div></div>
+<div><div class="k">Exit time</div><div class="v">${esc(prettyDT(d.exitAt))||'–'}</div></div>
+<div><div class="k">Entry</div><div class="v">${esc(d.entry)||'–'}</div></div>
+<div><div class="k">Take profit</div><div class="v">${esc(d.tp)||'–'}</div></div>
+<div><div class="k">Stop loss</div><div class="v">${esc(d.sl)||'–'}</div></div>
+</div></div>
+<div class="c"><h2>Before</h2>${before?`<img src="${before}" alt="Before screenshot">`:''}<div class="k">Why I took it</div><p class="t">${esc(d.why)||'–'}</p></div>
+<div class="c"><h2>After</h2>${after?`<img src="${after}" alt="After screenshot">`:''}<div class="k">Results</div><p class="t">${esc(d.results)||'–'}</p></div>
+</div></body></html>`;
+  }
+
+  /* ---------- reset ---------- */
+  function resetForm(){
+    ['fInstr','fExitAt','fEntry','fTP','fSL','fWhy','fResults','fPL'].forEach(id=>$(id).value='');
+    $('fEntryAt').value = nowLocal();
+    document.querySelectorAll('#fDir button, #fOutcome button').forEach(b=>b.classList.remove('active'));
+    state.dir=null; state.outcome=null;
+    $('shotBefore')._reset(); $('shotAfter')._reset();
+    $('savedBanner').classList.remove('show');
+    updateFname();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  $('btnNext').addEventListener('click', resetForm);
+  $('fEntryAt').value = nowLocal();
+
+  /* ---------- weekly check-in ---------- */
+  let weekTrades = [];
+  $('btnPick').addEventListener('click', ()=>$('fileTrades').click());
+  $('fileTrades').addEventListener('change', async (e)=>{
+    const files = [...e.target.files]; e.target.value='';
+    if(!files.length) return;
+    const found = []; let skipped = 0;
+    for(const f of files){
+      try{
+        const txt = await f.text();
+        const doc = new DOMParser().parseFromString(txt,'text/html');
+        const node = doc.getElementById('trade-data');
+        const d = node && JSON.parse(node.textContent);
+        if(d && d.type==='trade') found.push(d); else skipped++;
+      }catch(err){ skipped++; }
+    }
+    weekTrades = found.sort((a,b)=>(a.entryAt||'').localeCompare(b.entryAt||''));
+    renderWeek();
+    $('weekMsg').textContent = skipped ? `${skipped} file${skipped>1?'s':''} skipped (not a trade file).` : '';
+  });
+
+  function renderWeek(){
+    const t = weekTrades;
+    $('weekStats').hidden = t.length===0;
+    if(!t.length) return;
+    const wins = t.filter(x=>x.outcome==='win').length;
+    const losses = t.filter(x=>x.outcome==='loss').length;
+    const net = t.reduce((s,x)=>s+(Number(x.pl)||0),0);
+    $('sCount').textContent = t.length;
+    $('sWin').textContent = (wins+losses) ? Math.round(100*wins/(wins+losses))+'%' : '–';
+    const pl = $('sPL'); pl.textContent = money(net);
+    pl.classList.toggle('pos', net>0); pl.classList.toggle('neg', net<0);
+    $('weekList').innerHTML = t.map(x=>{
+      const col = x.outcome==='win' ? 'var(--green)' : x.outcome==='loss' ? 'var(--red)' : 'var(--gray)';
+      const dir = x.direction==='long' ? 'Long' : x.direction==='short' ? 'Short' : '';
+      const p = x.pl===null||x.pl===undefined ? '' : money(x.pl);
+      const cls = x.pl>0?'pos':x.pl<0?'neg':'';
+      return `<div class="trade"><div class="bar" style="background:${col}"></div>
+        <div class="main"><div class="t1">${esc(x.instrument)}${dir?' · '+dir:''}</div><div class="t2">${esc(prettyDT(x.entryAt))}</div></div>
+        <div class="pl ${cls}">${p}</div></div>`;
+    }).join('');
+  }
+
+  $('btnSaveWeek').addEventListener('click', async ()=>{
+    const t = weekTrades;
+    const wins = t.filter(x=>x.outcome==='win').length;
+    const losses = t.filter(x=>x.outcome==='loss').length;
+    const net = t.reduce((s,x)=>s+(Number(x.pl)||0),0);
+    const wr = (wins+losses) ? Math.round(100*wins/(wins+losses))+'%' : '–';
+    const qs = [
+      ['Did I follow my trading plan/rules?', $('q1').value.trim()],
+      ['What did I do well?', $('q2').value.trim()],
+      ['One thing I can improve next week?', $('q3').value.trim()],
+      ['How do I feel about this week?', $('q4').value.trim()],
+    ];
+    const rows = t.map(x=>`<div class="row"><span>${esc(x.instrument)}${x.direction?' · '+(x.direction==='long'?'Long':'Short'):''} <span style="color:#787B86">— ${esc(prettyDT(x.entryAt))}</span></span><span class="${x.pl>0?'pos':x.pl<0?'neg':''}">${x.pl==null?'':money(x.pl)}</span></div>`).join('');
+    const name = `${todayStr()}_Weekly-Checkin.html`;
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly check-in · ${todayStr()}</title><style>${FILE_CSS}</style></head><body><div class="w">
+<h1>Weekly check-in</h1><div class="sub">${esc(prettyDT(nowLocal()).split(' · ')[0])}</div>
+<div class="c"><h2>Stats</h2><div class="g">
+<div><div class="k">Trades</div><div class="v">${t.length}</div></div>
+<div><div class="k">Win rate</div><div class="v">${wr}</div></div>
+<div><div class="k">Net P/L</div><div class="v"><span class="${net>0?'pos':net<0?'neg':''}">${money(net)}</span></div></div>
+</div></div>
+${t.length?`<div class="c"><h2>Trades</h2>${rows}</div>`:''}
+<div class="c"><h2>Reflection</h2>${qs.map(([q,a])=>`<div style="margin-bottom:14px"><div class="k">${esc(q)}</div><p class="t">${esc(a)||'–'}</p></div>`).join('')}</div>
+</div></body></html>`;
+    const ok = await deliver(html, name);
+    if(ok){ $('weekBanner').classList.add('show'); window.scrollTo({top:0,behavior:'smooth'}); }
+  });
+
+  updateFname();
 })();
 </script>
 </body>
